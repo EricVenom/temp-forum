@@ -1,0 +1,47 @@
+.backdrop {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(37, 37, 37, 0.5);
+}
+
+.modal {
+    background-color: black;
+    position: relative;
+
+    height: 24.7rem;
+    width: 21rem;
+    border-radius: .5rem;
+    padding: 1.25rem 1rem;
+    gap: .7rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal input:first-of-type {
+    margin-top: 2.5rem;
+}
+
+.close {
+    font-weight: 400;
+    font-size: 2.5rem;
+    color: orangered;
+    transform: rotate(45deg);
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: .5rem .95rem;
+
+    cursor: pointer;
+}
+
+.close:hover {
+    opacity: .8;
+}

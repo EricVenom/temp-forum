@@ -1,7 +1,13 @@
+"use client";
+
 import styles from './page.module.css';
-import Link from 'next/link';
+import ButtonCreateAcc from '@/components/button';
+import SignUpModal from '@/components/SignUpModal';
+import { UseGlobalContext } from './Context/store';
 
 export default function Home() {
+  const { activeModal } = UseGlobalContext();
+
   return (
     <div className={styles.container}>
 
@@ -12,6 +18,8 @@ export default function Home() {
         </span>
       </div>
 
+      {activeModal && <SignUpModal />}
+
       <div className={styles.main}>
         <form>
           <input type='email' placeholder='Email' />
@@ -19,7 +27,7 @@ export default function Home() {
           <button type='submit'>Login</button>
           <div>
             <p className={styles.t_link}>Forgot your password?</p>
-            <Link href='/signup' className={styles.card}>Create new account</Link>
+            <ButtonCreateAcc>Create new account</ButtonCreateAcc>
           </div>
         </form>
       </div>
