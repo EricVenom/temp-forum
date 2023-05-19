@@ -137,7 +137,7 @@ form div {
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
 }
 
 @media (prefers-color-scheme: dark) {
