@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 export default function SignUpModal() {
   const { activeModal, setActiveModal } = UseGlobalContext();
+
   const [form, setForm] = useState({
     name: "",
     username: "",
@@ -17,16 +18,33 @@ export default function SignUpModal() {
 
   async function handleAxios() {
     try {
-      const { data } = await api.post('/login')
-      console.log(data.message)
+      await api.post('/signup', {
+        name: form.name,
+        username: form.username,
+        email: form.email,
+        password: form.password
+      })
+
+      setForm({
+        name: "",
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+      })
+
+      //setTimeout
+      setActiveModal(!activeModal)
+      //show some 'success' popup 
+
     } catch (error) {
-      console.error(error)
+      //show specific error to user
+      console.error(error.response.data)
     }
   }
   function handleSubmit(e) {
     e.preventDefault()
     handleAxios()
-    console.log(form)
   }
 
   return (

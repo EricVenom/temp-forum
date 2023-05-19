@@ -1,6 +1,18 @@
+@keyframes modal {
+    from {
+        opacity: 0;
+        transform: translateX(2rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0rem);
+    }
+}
+
 .backdrop {
     position: absolute;
-    height: 100vh;
+    min-height: 100%;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -10,9 +22,9 @@
 }
 
 .modal {
+    animation: modal .5s;
     background-color: black;
     position: relative;
-
 
     width: 21rem;
     border-radius: .5rem;
