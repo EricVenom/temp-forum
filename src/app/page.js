@@ -4,9 +4,34 @@ import styles from './page.module.css';
 import ButtonCreateAcc from '@/components/button';
 import SignUpModal from '@/components/SignUpModal';
 import { UseGlobalContext } from './Context/store';
+import { useState } from 'react';
+import api from '@/utils/axios';
 
 export default function Home() {
   const { activeModal } = UseGlobalContext();
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  })
+
+  async function handleLogin() {
+    try {
+      const { data } = await api.post('/login', {
+        email: form.email,
+        password: form.password
+      })
+      console.log(data)
+
+      //adicionar token ao localStorage ou Cookies
+    } catch (error) {
+      console.error(error.response.data)
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    handleLogin()
+  }
 
   return (
     <div className={styles.container}>
@@ -21,9 +46,21 @@ export default function Home() {
       {activeModal && <SignUpModal />}
 
       <div className={styles.main}>
-        <form>
-          <input type='email' placeholder='Email' />
-          <input type='password' placeholder='Password' />
+        <form onSubmit={handleSubmit}>
+          <input
+            type='email'
+            placeholder='Email'
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+          />
+
+          <input
+            type='password'
+            placeholder='Password'
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+          />
+
           <button type='submit'>Login</button>
           <div>
             <p className={styles.t_link}>Forgot your password?</p>

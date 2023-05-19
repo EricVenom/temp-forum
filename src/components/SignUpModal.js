@@ -2,7 +2,7 @@
 
 import styles from './SignUpModal.module.css';
 import { UseGlobalContext } from '@/app/Context/store';
-import api from '../utils/axios';
+import api from '@/utils/axios';
 import { useState } from 'react';
 
 export default function SignUpModal() {
